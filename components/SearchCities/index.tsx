@@ -1,18 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "../../styles/SearchCities.module.css";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { geoDBCitiesApis } from "@/apis";
-import { GeoDBCitiesParams } from "@/types/api";
+import { GeoDBCitiesParams, GeoDBCity } from "@/types/api";
+import { MIN_POPULATION } from "@/configs/constants";
+import { SearchedCityObject } from "@/types/search";
+import { useDispatch } from "react-redux";
+import { searchedCityDataAction } from "@/actions";
 const SearchCities: React.FC = () => {
-  const [search, setSearch] = useState(null);
-  const loadOptions = async (inputValue: any) => {
+  const dispatch = useDispatch();
+  const [search, setSearch] = useState<SearchedCityObject | null>(null);
+  const loadOptions = async (inputValue: string) => {
     const params: GeoDBCitiesParams = {
-      minPopulation: "1000000",
+      minPopulation: MIN_POPULATION,
       namePrefix: inputValue,
     };
     const res = await geoDBCitiesApis.getList(params);
+    const cities: GeoDBCity[] = res.data.data as GeoDBCity[];
     return {
-      options: res.data.data.map((city: any) => {
+      options: cities.map((city: GeoDBCity) => {
         return {
           value: `${city.latitude} ${city.longitude}`,
           label: `${city.name}, ${city.countryCode}`,
@@ -21,8 +27,9 @@ const SearchCities: React.FC = () => {
     };
   };
 
-  const handleOnChange = (searchData: any) => {
+  const handleOnChange = (searchData: SearchedCityObject | null) => {
     setSearch(searchData);
+    if (searchData) dispatch(searchedCityDataAction.setValue(searchData));
   };
   return (
     <AsyncPaginate
