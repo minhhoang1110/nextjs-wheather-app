@@ -1,8 +1,9 @@
+import { DEFAULT_CITY, DEFAULT_LAT, DEFAULT_LON } from "@/configs/constants";
 import { Action } from "@/types/redux";
 import { SearchedCityObject } from "@/types/search";
 const initState: SearchedCityObject = {
-  label: "",
-  value: "",
+  value: `${DEFAULT_LAT} ${DEFAULT_LON}`,
+  label: DEFAULT_CITY,
 };
 const searchedCityDataReducer = (
   state: SearchedCityObject = initState,

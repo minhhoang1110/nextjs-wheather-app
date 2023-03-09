@@ -2,13 +2,13 @@ import SearchCities from "@/components/SearchCities";
 import React from "react";
 import styles from "../styles/Home.module.css";
 import { Layout } from "antd";
-import CurrentWheather from "@/components/CurrentWheather";
+import CurrentWeather from "@/components/CurrentWeather";
 const Home: React.FC = () => {
   return (
     <Layout className={styles.layout}>
       <div className={styles.container}>
         <SearchCities />
-        <CurrentWheather />
+        <CurrentWeather />
       </div>
     </Layout>
   );

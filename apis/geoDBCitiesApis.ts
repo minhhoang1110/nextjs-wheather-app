@@ -12,7 +12,6 @@ const getList = (params: GeoDBCitiesParams) => {
       "X-RapidAPI-Host": process.env.NEXT_PUBLIC_RAPID_API_HOST,
     },
   };
-  // const res = await axios.request(options);
   return axios.request(options);
 };
 const geoDBCitiesApis = { getList };

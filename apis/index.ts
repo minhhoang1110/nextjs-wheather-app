@@ -1,2 +1,3 @@
 import geoDBCitiesApis from "./geoDBCitiesApis";
-export { geoDBCitiesApis };
+import weatherApis from "./weatherApis";
+export { geoDBCitiesApis, weatherApis };
