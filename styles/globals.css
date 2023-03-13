@@ -88,4 +88,8 @@ a {
   color: inherit;
   text-decoration: none;
 }
-
+@media (max-width:767px) {
+  div.ant-collapse-expand-icon{
+    display: none !important;
+  }
+}

@@ -1,0 +1,56 @@
+.forecastContainer{
+    width: 100%;
+    margin: 20px 0;
+    margin-top: 30px;
+    max-width: 700px;
+}
+.panelHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.panelHeader >div{
+    display: flex;
+    align-items: center;
+}
+.panelHeader .timeLabel{
+    font-weight: 600;
+}
+.panelHeader .weatherIconWrapper {
+    margin-right: 5px;
+}
+.panelHeader .weatherDesciption{
+    font-weight: 600;
+    margin-right: 10px;
+}
+.panelHeader .temp{
+    min-width: 120px;
+    display: block;
+    text-align: right;
+}
+.panelBody{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.panelBody .infomationWrapper{
+    width: calc(50% - 20px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 20px;
+}
+.panelBody .infomationWrapper:last-child{
+    margin-right: 0;
+}
+@media (max-width:767px) {
+    .forecastContainer{
+        font-size: 12px;
+    }
+    .forecastContainer div.ant-collapse-expand-icon{
+        display: none;
+    }
+    .panelHeader >div:last-child {
+        flex-direction: column;
+    }
+}

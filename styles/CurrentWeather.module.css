@@ -30,25 +30,46 @@
 }
 .degree{
     font-size: 100px;
+    position: relative;
+}
+.currentWeatherContainer .weatherIconWrapper{
+    position: absolute;
+    right: 11px;
+    bottom: -19px;
 }
 .detailTitle{
     text-align: left;
     margin-bottom: 5px;
 }
-.infomationWrapper{
+.currentWeatherContainer .infomationWrapper{
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 5px;
 }
-.infomationWrapper p{
+.currentWeatherContainer .infomationWrapper p{
     margin-bottom: 0px;
 }
 @media (max-width:767px) {
     .detailsWrapper {
         flex-direction: column;
+        font-size: 13px;
     }
     .detailsWrapper>div {
         width: 100%;
+    }
+    .cityName{
+        font-size: 18px;
+    }
+    .degree{
+        font-size: 70px;
+        margin-bottom: 20px;
+    }
+    .weather{
+        margin-bottom: 10px;
+    }
+    .currentWeatherContainer .weatherIconWrapper{
+        right: 19px;
+        bottom: -14px;
     }
 }
