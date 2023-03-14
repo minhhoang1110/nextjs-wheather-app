@@ -6,6 +6,8 @@ import { Collapse } from "antd";
 import { MainData, Weather, WindData } from "@/types/api";
 import styles from "../../styles/Forecast.module.css";
 import WeatherIcon from "../WeatherIcon";
+import moment from "moment-timezone";
+import { DEFAULT_TIMEZONE, TIME_FORMAT } from "@/configs/constants";
 const { Panel } = Collapse;
 const Forecast: React.FC = () => {
   const searchedValue: SearchedCityObject = useSelector(
@@ -13,17 +15,21 @@ const Forecast: React.FC = () => {
   );
   const { forecast, forecastLoading } = useForecast(searchedValue);
   const showPanelHeader = (
-    time: string,
+    time: number,
     data: MainData,
     weather: Weather
   ): JSX.Element => {
+    const formatedTime = moment
+      .unix(time)
+      .tz(DEFAULT_TIMEZONE)
+      .format(TIME_FORMAT);
     return (
       <div className={styles.panelHeader}>
         <div>
           <div className={styles.weatherIconWrapper}>
             <WeatherIcon icon={weather.icon || ""} size="small" />
           </div>
-          <span className={styles.timeLabel}>{time}</span>
+          <span className={styles.timeLabel}>{formatedTime}</span>
         </div>
         <div>
           <span
@@ -54,7 +60,7 @@ const Forecast: React.FC = () => {
   const showPanelBody = (main: MainData, wind: WindData): JSX.Element => {
     return (
       <div className={styles.panelBody}>
-        {infomationWrapper("Temperature", "°C", main.temp)}
+        {infomationWrapper("Temperature", "°C", Math.round(main.temp))}
         {infomationWrapper("Feel like", "°C", main.feels_like)}
         {infomationWrapper("Humidity", "%", main.humidity)}
         {infomationWrapper("Pressure", "hPa", main.pressure)}
@@ -71,7 +77,7 @@ const Forecast: React.FC = () => {
         forecast.list.map((item, index) => (
           <Panel
             key={index}
-            header={showPanelHeader(item.dt_txt, item.main, item.weather[0])}
+            header={showPanelHeader(item.dt, item.main, item.weather[0])}
           >
             {showPanelBody(item.main, item.wind)}
           </Panel>

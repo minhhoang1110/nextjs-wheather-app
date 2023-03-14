@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import styles from "../../styles/CurrentWeather.module.css";
 import { useCurrentWeather } from "@/hooks";
 import WeatherIcon from "../WeatherIcon";
+import moment from "moment-timezone";
+import { DEFAULT_TIMEZONE, TIME_FORMAT } from "@/configs/constants";
 const CurrentWeather: React.FC = () => {
   const searchedValue: SearchedCityObject = useSelector(
     (state: any) => state.searchedCityDataReducer
@@ -33,6 +35,12 @@ const CurrentWeather: React.FC = () => {
         <div className={styles.weather}>
           {weather && weather.weather[0].main},{" "}
           {weather && weather.weather[0].description}
+        </div>
+        <div className={styles.dateTime}>
+          {moment
+            .unix(weather?.dt || 0)
+            .tz(DEFAULT_TIMEZONE)
+            .format(TIME_FORMAT)}
         </div>
         <div className={styles.detailsWrapper}>
           <div className={styles.degree}>
