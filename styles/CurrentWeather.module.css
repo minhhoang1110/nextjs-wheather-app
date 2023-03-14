@@ -17,6 +17,17 @@
 .cityName{
     font-size: 25px;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.syncButton{
+    background: none;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    margin-left: 5px;
+    font-size: 18px;
 }
 .dateTime{
     margin-bottom: 20px;

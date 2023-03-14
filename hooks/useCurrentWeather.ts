@@ -28,6 +28,7 @@ const useCurrentWeather = (searchedValue: SearchedCityObject) => {
     setWeather,
     weatherLoading,
     setWeatherLoading,
+    loadWeather,
   };
 };
 export default useCurrentWeather;
