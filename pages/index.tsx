@@ -11,6 +11,7 @@ const Home: React.FC = () => {
       <Head>
         <title>Search for Weather</title>
       </Head>
+      <div className={styles.bgImage}></div>
       <div className={styles.container}>
         <SearchCities />
         <CurrentWeather />

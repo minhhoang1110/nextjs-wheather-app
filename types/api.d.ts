@@ -1,6 +1,7 @@
 export interface GeoDBCitiesParams {
   minPopulation: number;
   namePrefix: string;
+  limit?: number;
 }
 export interface GeoDBCity {
   city: string;

@@ -3,7 +3,7 @@ import styles from "../../styles/SearchCities.module.css";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { geoDBCitiesApis } from "@/apis";
 import { GeoDBCitiesParams, GeoDBCity } from "@/types/api";
-import { MIN_POPULATION } from "@/configs/constants";
+import { DEFAULT_LIMIT, MIN_POPULATION } from "@/configs/constants";
 import { SearchedCityObject } from "@/types/search";
 import { useDispatch } from "react-redux";
 import { searchedCityDataAction } from "@/actions";
@@ -14,6 +14,7 @@ const SearchCities: React.FC = () => {
     const params: GeoDBCitiesParams = {
       minPopulation: MIN_POPULATION,
       namePrefix: inputValue,
+      limit: DEFAULT_LIMIT,
     };
     const res = await geoDBCitiesApis.getList(params);
     const cities: GeoDBCity[] = res.data.data as GeoDBCity[];
@@ -21,7 +22,7 @@ const SearchCities: React.FC = () => {
       options: cities.map((city: GeoDBCity) => {
         return {
           value: `${city.latitude} ${city.longitude}`,
-          label: `${city.name}, ${city.countryCode}`,
+          label: `${city.name}, ${city.country} (${city.countryCode})`,
         };
       }),
     };
